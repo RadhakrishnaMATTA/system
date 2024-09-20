@@ -1,0 +1,308 @@
+<html>
+ <head>
+  <title>
+   Glucose Monitor
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        .header i {
+            font-size: 24px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        .header i:hover {
+            transform: scale(1.1);
+        }
+        .title {
+            margin-top: 20px;
+            font-size: 24px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .subtitle {
+            color: #888;
+            font-size: 14px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .tabs {
+            display: flex;
+            margin-top: 20px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+        .tab {
+            padding: 10px 20px;
+            background-color: #ff6600;
+            border-radius: 20px;
+            margin-right: 10px;
+            color: #fff;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .tab:hover {
+            background-color: #ff8533;
+            transform: scale(1.05);
+        }
+        .graph {
+            margin-top: 20px;
+            position: relative;
+            animation: fadeIn 3s ease-in-out;
+        }
+        .graph canvas {
+            width: 100%;
+            height: 150px;
+        }
+        .graph .value {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            font-size: 36px;
+            color: #ff6600;
+            animation: pulseValue 1s infinite;
+        }
+        .graph .time {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
+            color: #888;
+            font-size: 12px;
+        }
+        .events {
+            margin-top: 20px;
+            animation: fadeIn 3.5s ease-in-out;
+        }
+        .event {
+            display: flex;
+            align-items: center;
+            background-color: #333;
+            border-radius: 20px;
+            padding: 10px;
+            margin-bottom: 10px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .event:hover {
+            transform: scale(1.05);
+            background-color: #444;
+        }
+        .event .icon {
+            background-color: #00bfff;
+            padding: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: background-color 0.3s;
+        }
+        .event .icon i {
+            color: #fff;
+        }
+        .event .details {
+            flex-grow: 1;
+        }
+        .event .details .title {
+            font-size: 16px;
+        }
+        .event .details .time {
+            color: #888;
+            font-size: 12px;
+        }
+        .event .arrow {
+            color: #888;
+        }
+        .highlight {
+            background-color: #00bfff;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0, 191, 255, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0, 191, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0, 191, 255, 0);
+            }
+        }
+        @keyframes pulseValue {
+            0% {
+                transform: translateY(-50%) scale(1);
+            }
+            50% {
+                transform: translateY(-50%) scale(1.1);
+            }
+            100% {
+                transform: translateY(-50%) scale(1);
+            }
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <i class="fas fa-arrow-left">
+    </i>
+    <i class="fas fa-ellipsis-h">
+    </i>
+   </div>
+   <div class="title">
+    Your glucose
+   </div>
+   <div class="subtitle">
+    Scanned at 13:48 pm
+   </div>
+   <div class="tabs">
+    <div class="tab">
+     Today
+    </div>
+    <div class="tab" style="background: grey;">
+     Week
+    </div>
+    <div class="tab" style="background: grey;">
+     Month
+    </div>
+   </div>
+   <div class="graph">
+    <canvas id="glucoseGraph"></canvas>
+    <div class="value" id="glucoseValue">
+     103 mg/dL
+    </div>
+    <div class="time">
+     <span>07:00</span>
+     <span>07:30</span>
+     <span>08:00</span>
+     <span>08:30</span>
+     <span>09:00</span>
+     <span>09:30</span>
+     <span>10:00</span>
+     <span>10:30</span>
+     <span>11:00</span>
+     <span>11:30</span>
+     <span>12:00</span>
+    </div>
+   </div>
+   <div class="events">
+    <div class="event">
+     <div class="icon">
+      <i class="fas fa-tint">
+      </i>
+     </div>
+     <div class="details">
+      <div class="title">
+       Within Range
+      </div>
+      <div class="time">
+       07:00-07:30
+      </div>
+     </div>
+     <div class="arrow">
+      <i class="fas fa-chevron-right">
+      </i>
+     </div>
+    </div>
+    <div class="event highlight">
+     <div class="icon">
+      <i class="fas fa-tint">
+      </i>
+     </div>
+     <div class="details">
+      <div class="title">
+       Within Range
+      </div>
+      <div class="time">
+       08:00-08:30
+      </div>
+     </div>
+     <div class="arrow">
+      <i class="fas fa-chevron-right">
+      </i>
+     </div>
+    </div>
+    <div class="event">
+     <div class="icon">
+      <i class="fas fa-tint">
+      </i>
+     </div>
+     <div class="details">
+      <div class="title">
+       Within Range
+      </div>
+      <div class="time">
+       09:00-10:30
+      </div>
+     </div>
+     <div class="arrow">
+      <i class="fas fa-chevron-right">
+      </i>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+    const canvas = document.getElementById('glucoseGraph');
+    const ctx = canvas.getContext('2d');
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    let data = [70, 80, 90, 100, 110, 100, 90, 80, 70, 80, 90, 100, 110, 100, 90, 80, 70];
+    let index = 0;
+
+    function drawGraph() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.beginPath();
+        ctx.moveTo(0, canvas.height - data[0]);
+
+        for (let i = 1; i < data.length; i++) {
+            ctx.lineTo((i / (data.length - 1)) * canvas.width, canvas.height - data[i]);
+        }
+
+        ctx.strokeStyle = '#ff6600';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    function updateGraph() {
+        data.push(Math.floor(Math.random() * 40) + 70);
+        data.shift();
+        drawGraph();
+        document.getElementById('glucoseValue').innerText = `${data[data.length - 1]} mg/dL`;
+    }
+
+    setInterval(updateGraph, 1000);
+    drawGraph();
+
+    // Redirect to another page after 6 seconds
+setTimeout(function() {
+    window.location.href = "2third.html"; // Replace 'nextPage.html' with your desired URL or file path
+}, 9000); // 6000 milliseconds = 6 seconds
+
+  </script>
+ </body>
+</html>

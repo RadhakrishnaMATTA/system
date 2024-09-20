@@ -1,0 +1,248 @@
+<html>
+<head>
+    <title>Insights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: #2c2c2c;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .card h2 {
+            font-size: 18px;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+        .card .avg {
+            font-size: 14px;
+            color: #b0b0b0;
+            text-align: right;
+        }
+        .chart {
+            width: 100%;
+            height: 200px;
+        }
+        .legend {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #b0b0b0;
+            margin-top: 10px;
+        }
+        .legend div {
+            display: flex;
+            align-items: center;
+        }
+        .legend div span {
+            width: 10px;
+            height: 10px;
+            display: inline-block;
+            margin-right: 5px;
+            border-radius: 50%;
+        }
+        .legend .before-meal span {
+            background-color: #3b82f6;
+        }
+        .legend .after-meal span {
+            background-color: #34d399;
+        }
+        .legend .normal span {
+            background-color: #34d399;
+        }
+        .legend .above-normal span {
+            background-color: #f87171;
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 20px;
+            }
+            .card {
+                padding: 15px;
+            }
+            .card h2 {
+                font-size: 16px;
+            }
+            .card .avg {
+                font-size: 12px;
+            }
+            .chart {
+                height: 150px;
+            }
+            .legend {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Insights</div>
+        <div class="card">
+            <div class="header">
+                <h2>Blood Sugar</h2>
+                <div class="avg">Avg this week <strong>120mg/dL</strong></div>
+            </div>
+            <canvas id="bloodSugarChart" class="chart"></canvas>
+            <div class="legend">
+                <div class="before-meal"><span></span>Before meal</div>
+                <div class="after-meal"><span></span>After meal</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="header">
+                <h2>Carbs Level</h2>
+                <div class="avg">Avg this week <strong>127g</strong></div>
+            </div>
+            <canvas id="carbsLevelChart" class="chart"></canvas>
+            <div class="legend">
+                <div class="normal"><span></span>Normal</div>
+                <div class="above-normal"><span></span>Above normal</div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const bloodSugarCtx = document.getElementById('bloodSugarChart').getContext('2d');
+        const bloodSugarChart = new Chart(bloodSugarCtx, {
+            type: 'line',
+            data: {
+                labels: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                datasets: [
+                    {
+                        label: 'Before meal',
+                        data: [90, 80, 70, 60, 80, 100, 90],
+                        borderColor: '#3b82f6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    },
+                    {
+                        label: 'After meal',
+                        data: [120, 130, 110, 100, 120, 140, 110],
+                        borderColor: '#34d399',
+                        backgroundColor: 'rgba(52, 211, 153, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 160,
+                        ticks: {
+                            color: '#b0b0b0'
+                        },
+                        grid: {
+                            color: '#3a3a3a'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#b0b0b0'
+                        },
+                        grid: {
+                            color: '#3a3a3a'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        const carbsLevelCtx = document.getElementById('carbsLevelChart').getContext('2d');
+        const carbsLevelChart = new Chart(carbsLevelCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Su 10 Jul', 'Mo 11 Jul', 'Tu 12 Jul', 'We 13 Jul', 'Th 14 Jul', 'Fr 15 Jul'],
+                datasets: [
+                    {
+                        label: 'Normal',
+                        data: [65, 0, 135, 145, 65, 145],
+                        backgroundColor: '#34d399'
+                    },
+                    {
+                        label: 'Above normal',
+                        data: [0, 160, 0, 0, 0, 0],
+                        backgroundColor: '#f87171'
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 160,
+                        ticks: {
+                            color: '#b0b0b0'
+                        },
+                        grid: {
+                            color: '#3a3a3a'
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#b0b0b0'
+                        },
+                        grid: {
+                            color: '#3a3a3a'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                animation: {
+                    duration: 2000,
+                    easing: 'easeInOutBounce'
+                }
+            }
+        });
+
+        function updateCharts() {
+            // Update blood sugar chart data
+            bloodSugarChart.data.datasets[0].data = bloodSugarChart.data.datasets[0].data.map(() => Math.floor(Math.random() * 160));
+            bloodSugarChart.data.datasets[1].data = bloodSugarChart.data.datasets[1].data.map(() => Math.floor(Math.random() * 160));
+            bloodSugarChart.update();
+
+            // Update carbs level chart data
+            carbsLevelChart.data.datasets[0].data = carbsLevelChart.data.datasets[0].data.map(() => Math.floor(Math.random() * 160));
+            carbsLevelChart.data.datasets[1].data = carbsLevelChart.data.datasets[1].data.map(() => Math.floor(Math.random() * 160));
+            carbsLevelChart.update();
+        }
+
+        setInterval(updateCharts, 2000); // Update charts every 2 seconds
+    </script>
+</body>
+</html>

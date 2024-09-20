@@ -1,0 +1,359 @@
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>
+   Doctor Appointment
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+  <style>
+   body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0E27;
+            color: #FFFFFF;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .header .welcome-text {
+            margin-left: 10px;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons i {
+            margin-left: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .section-title a {
+            color: #3A6FF7;
+            cursor: pointer;
+        }
+        .appointment-card {
+            background-color: #3A6FF7;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 10px;
+            position: relative;
+        }
+        .appointment-card .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .appointment-card .appointment-header h3 {
+            margin: 0;
+        }
+        .appointment-card .appointment-details {
+            margin-top: 10px;
+        }
+        .appointment-card .appointment-details i {
+            margin-right: 10px;
+        }
+        .appointment-card .doctor-info {
+            display: flex;
+            align-items: center;
+            background-color: #1A1A1A;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .appointment-card .doctor-info img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .appointment-card .doctor-info .doctor-text {
+            margin-left: 10px;
+        }
+        .appointment-card .doctor-info .doctor-text h4 {
+            margin: 0;
+        }
+        .appointment-card .doctor-info .doctor-text p {
+            margin: 0;
+            color: #A0A0A0;
+        }
+        .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .dots .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #A0A0A0;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .dots .dot.active {
+            background-color: #3A6FF7;
+        }
+        .speciality-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .speciality-icons .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .speciality-icons .icon i {
+            font-size: 30px;
+            background-color: #1A1A1A;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .speciality-icons .icon p {
+            margin-top: 5px;
+        }
+        .top-doctor {
+            margin-top: 20px;
+        }
+        .top-doctor .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .top-doctor .tabs .tab {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #1A1A1A;
+            cursor: pointer;
+        }
+        .top-doctor .tabs .tab.active {
+            background-color: #3A6FF7;
+        }
+        .top-doctor .doctor-card {
+            background-color: #1A1A1A;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top-doctor .doctor-card img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .top-doctor .doctor-card .doctor-info {
+            margin-left: 10px;
+        }
+        .top-doctor .doctor-card .doctor-info h4 {
+            margin: 0;
+        }
+        .top-doctor .doctor-card .doctor-info p {
+            margin: 0;
+            color: #A0A0A0;
+        }
+        .top-doctor .doctor-card .rating {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .top-doctor .doctor-card .rating i {
+            color: #FFD700;
+            margin-right: 5px;
+        }
+        .top-doctor .doctor-card .rating span {
+            margin-left: 5px;
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <div class="profile">
+     <img alt="Profile picture of the user" height="50" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-0REgZZX7ipVoAi3EwKYZ8yf7.png?st=2024-09-19T12%3A14%3A46Z&amp;se=2024-09-19T14%3A14%3A46Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A20%3A43Z&amp;ske=2024-09-20T02%3A20%3A43Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=PV6tlSJwb3PkYe3i8zvzlU4NZHAksWG5%2BKq3anf5vs8%3D" width="50"/>
+     <div class="welcome-text">
+      <h2>
+       Hello, Mukhlisin
+      </h2>
+      <p>
+       Welcome Back
+      </p>
+     </div>
+    </div>
+    <div class="icons">
+     <i class="fas fa-bell" onclick="alert('Notifications clicked!')">
+     </i>
+     <i class="fas fa-heart" onclick="alert('Favorites clicked!')">
+     </i>
+    </div>
+   </div>
+   <div class="section-title">
+    <h2>
+     Appointment Today
+    </h2>
+    <a href="#" onclick="alert('View More Appointments clicked!')">
+     View More
+    </a>
+   </div>
+   <div class="appointment-card">
+    <div class="appointment-header">
+     <h3>
+      Appointment
+     </h3>
+     <i class="fas fa-paper-plane" onclick="alert('Send Appointment clicked!')">
+     </i>
+    </div>
+    <div class="appointment-details">
+     <p>
+      <i class="fas fa-calendar-alt">
+      </i>
+      Sunday, 11 September 2023
+     </p>
+     <p>
+      <i class="fas fa-clock">
+      </i>
+      08.00 - 09.00 AM
+     </p>
+    </div>
+    <div class="doctor-info">
+     <img alt="Profile picture of Dr. Acmad Subandi" height="50" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-ckv6rrMrt6DbafQEFmbVizrB.png?st=2024-09-19T12%3A05%3A55Z&amp;se=2024-09-19T14%3A05%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T01%3A55%3A06Z&amp;ske=2024-09-20T01%3A55%3A06Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=cKEtt%2B39LDq6RXEQW2USm4hwClc4w46qGDCy1LbwAiE%3D" width="50"/>
+     <div class="doctor-text">
+      <h4>
+       Dr. Acmad Subandi
+      </h4>
+      <p>
+       Heat Specialist - Tokyo
+      </p>
+     </div>
+    </div>
+   </div>
+   <div class="dots">
+    <div class="dot active" onclick="alert('Dot 1 clicked!')">
+    </div>
+    <div class="dot" onclick="alert('Dot 2 clicked!')">
+    </div>
+    <div class="dot" onclick="alert('Dot 3 clicked!')">
+    </div>
+   </div>
+   <div class="section-title">
+    <h2>
+     Categories
+    </h2>
+    <a href="#" onclick="alert('View More Categories clicked!')">
+     View More
+    </a>
+   </div>
+   <div class="speciality-icons">
+    <div class="icon" onclick="alert('Medication clicked!')">
+     <i class="fas fa-pills">
+     </i>
+     <p>
+      Medication
+     </p>
+    </div>
+    <div class="icon" onclick="alert('Feedback clicked!')">
+     <i class="fas fa-comments">
+     </i>
+     <p>
+      Feedback
+     </p>
+    </div>
+    <div class="icon" onclick="alert('Alerts clicked!')">
+     <i class="fas fa-exclamation-triangle">
+     </i>
+     <p>
+      Alerts
+     </p>
+    </div>
+    <div class="icon" onclick="alert('Notifications clicked!')">
+     <i class="fas fa-bell">
+     </i>
+     <p>
+      Notifications
+     </p>
+    </div>
+   </div>
+   <div class="top-doctor">
+    <div class="section-title">
+     <h2>
+      Top Doctor
+     </h2>
+     <a href="#" onclick="alert('View More Top Doctors clicked!')">
+      View More
+     </a>
+    </div>
+    <div class="tabs">
+     <div class="tab active" onclick="alert('General tab clicked!')">
+      General
+     </div>
+     <div class="tab" onclick="alert('Cardiologist tab clicked!')">
+      Cardiologist
+     </div>
+     <div class="tab" onclick="alert('Pediatrician tab clicked!')">
+      Pediatrician
+     </div>
+    </div>
+    <div class="doctor-card">
+     <img alt="Profile picture of Dr. Acmad Subandi" height="50" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-ckv6rrMrt6DbafQEFmbVizrB.png?st=2024-09-19T12%3A05%3A55Z&amp;se=2024-09-19T14%3A05%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T01%3A55%3A06Z&amp;ske=2024-09-20T01%3A55%3A06Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=cKEtt%2B39LDq6RXEQW2USm4hwClc4w46qGDCy1LbwAiE%3D" width="50"/>
+     <div class="doctor-info">
+      <h4>
+       Dr. Acmad Subandi
+      </h4>
+      <p>
+       Heat Specialist - Tokyo
+      </p>
+      <div class="rating">
+       <i class="fas fa-star">
+       </i>
+       <span>
+        4.0
+       </span>
+       <p>
+        Xperients
+       </p>
+      </div>
+     </div>
+     <i class="fas fa-heart" onclick="alert('Favorite doctor clicked!')">
+     </i>
+    </div>
+   </div>
+  </div>
+  <script>
+   // Add JavaScript functionality for tabs
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            alert(this.textContent + ' tab clicked!');
+        });
+    });
+
+    // Add JavaScript functionality for dots
+    document.querySelectorAll('.dot').forEach(dot => {
+        dot.addEventListener('click', function() {
+            document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+            this.classList.add('active');
+            alert('Dot ' + (Array.from(this.parentNode.children).indexOf(this) + 1) + ' clicked!');
+        });
+    });
+  </script>
+ </body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+<head>
+    <title>Bluetooth Scanning</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0A1A3A;
+            font-family: Arial, sans-serif;
+            color: #FFFFFF;
+        }
+        .bluetooth-icon {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #1A2A4A, #0A1A3A);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px #00FF00;
+            margin-bottom: 20px;
+        }
+        .bluetooth-icon i {
+            font-size: 50px;
+            color: #00FF00;
+        }
+        .scanning {
+            font-size: 18px;
+            color: #00FF00;
+            margin-bottom: 20px;
+        }
+        .wave {
+            position: relative;
+            width: 100%;
+            height: 50px;
+            overflow: hidden;
+        }
+        .wave::before, .wave::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200%;
+            height: 100%;
+            background: url('https://placehold.co/100x50/0A1A3A/0A1A3A') repeat-x;
+            animation: wave 2s linear infinite;
+        }
+        .wave::after {
+            top: 10px;
+            animation-duration: 4s;
+        }
+        @keyframes wave {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        setTimeout(function() {
+            document.querySelector('.scanning').textContent = "Scanning and connected to the device";
+        }, 3000);
+
+        setTimeout(function() {
+            // Use the correct path to the new page
+            window.location.href = "dash.html"; // Replace this with the correct relative/absolute URL of the new page
+        }, 5000);
+    </script>
+</head>
+<body>
+    <div class="bluetooth-icon">
+        <i class="fab fa-bluetooth-b"></i>
+    </div>
+    <div class="scanning">
+        Scanning...
+    </div>
+    <div class="wave"></div>
+</body>
+</html>

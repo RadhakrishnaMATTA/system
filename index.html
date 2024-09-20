@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Doctor Consultation App</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0d0d0d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            max-width: 400px;
+            background-color: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .image-container {
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: 28px;
+            margin: 0;
+            line-height: 1.4;
+        }
+        .highlight {
+            color: #4a90e2;
+        }
+        p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .button {
+            display: block;
+            width: 80%;
+            max-width: 300px;
+            margin: 10px auto;
+            padding: 15px;
+            border: none;
+            border-radius: 25px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .button-primary {
+            background-color: #4a90e2;
+            color: white;
+        }
+        .button-primary:hover {
+            background-color: #357ab8;
+        }
+        .button-secondary {
+            background-color: transparent;
+            color: white;
+            border: 1px solid #4a90e2;
+        }
+        .button-secondary:hover {
+            background-color: #4a90e2;
+            color: white;
+        }
+        @media (min-width: 768px) {
+            body {
+                height: 100vh;
+                padding: 0 20px;
+            }
+            .container {
+                max-width: 600px;
+                padding: 40px;
+            }
+            h1 {
+                font-size: 32px;
+            }
+            p {
+                font-size: 22px;
+            }
+            .button {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-aBEJuftXCOppdztkxGtcYoTn.png?st=2024-09-19T11%3A44%3A42Z&se=2024-09-19T13%3A44%3A42Z&sp=r&sv=2024-08-04&sr=b&rscd=inline&rsct=image/png&skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2024-09-19T02%3A09%3A46Z&ske=2024-09-20T02%3A09%3A46Z&sks=b&skv=2024-08-04&sig=xTiU%2BJlN4/mN%2BqPmmpw1CIGYonFhNpSjchb7RVgloVU%3D" alt="Illustration of doctors with medical equipment"/>
+        </div>
+        <h1>Welcome to the <span class="highlight">Glucose</span> Monitoring App!</h1>
+        <p><span class="highlight">Your health</span> is our priority.</p>
+        <button class="button button-primary" onclick="hi()">Get Started</button>
+        <button class="button button-secondary">I'm already a member</button>
+    </div>
+    <script type="text/javascript">
+        function hi() {
+            window.location.href = "2inedx.html";
+        }
+    </script>
+</body>
+</html>

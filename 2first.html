@@ -1,0 +1,270 @@
+<html>
+<head>
+    <title>Statistics</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000000; /* Changed background color to black */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+            animation: slideIn 1s ease-in-out;
+        }
+
+        .header i {
+            font-size: 24px;
+            color: #b0b0b0;
+            cursor: pointer;
+        }
+
+        .header h1 {
+            font-size: 24px;
+            color: #000000;
+            margin: 0;
+        }
+
+        .content {
+            padding: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .section-title {
+            font-size: 20px;
+            color: #ffffff; /* Changed text color to white */
+            margin: 20px 0;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+            animation: slideIn 1.5s ease-in-out;
+        }
+
+        .tabs div {
+            margin: 0 10px;
+            font-size: 16px;
+            color: #b0b0b0;
+            cursor: pointer;
+        }
+
+        .tabs .active {
+            color: #00c853;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-bottom: 40px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .progress {
+            background-color: rgba(255, 255, 255, 0.8); /* Transparent white */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            animation: slideIn 2s ease-in-out;
+        }
+
+        .progress-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            animation: slideIn 2.5s ease-in-out;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-item img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .progress-item .text {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .progress-item .text p {
+            margin: 0;
+            font-size: 16px;
+            color: #000000;
+        }
+
+        .progress-item .text .percentage {
+            font-size: 14px;
+            color: #b0b0b0;
+        }
+
+        .progress-item .status {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-item .status .circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 5px solid #00c853;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 14px;
+            color: #00c853;
+        }
+
+        .progress-item .status .check {
+            font-size: 24px;
+            color: #00c853;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <i class="fas fa-arrow-left" onclick="goBack()"></i>
+        <h1>Statistics</h1>
+        <i class="fas fa-ellipsis-h" onclick="showMenu()"></i>
+    </div>
+    <div class="content">
+        <div class="section-title">Calories</div>
+        <div class="tabs">
+            <div onclick="selectTab('day')">Day</div>
+            <div class="active" onclick="selectTab('week')">Week</div>
+            <div onclick="selectTab('month')">Month</div>
+        </div>
+        <div class="chart-container">
+            <canvas id="caloriesChart"></canvas>
+        </div>
+        <div class="section-title">Progress</div>
+        <div class="progress">
+            <div class="progress-item">
+                <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-47Pqj4wuqxpo6ONMeW7iibCX.png?st=2024-09-19T13%3A17%3A16Z&amp;se=2024-09-19T15%3A17%3A16Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T01%3A58%3A34Z&amp;ske=2024-09-20T01%3A58%3A34Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=cp7oA8jy0rMtsJxaCOGAL0XZYiUmAGqVRxMaaENPs/s%3D" alt="Burger icon">
+                <div class="text">
+                    <p>Avoid to eat fast food</p>
+                    <div class="percentage">75%</div>
+                </div>
+                <div class="status">
+                    <div class="circle">75%</div>
+                </div>
+            </div>
+            <div class="progress-item">
+                <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-mSMcDr0U6pBBass5qIiEkctx.png?st=2024-09-19T13%3A17%3A07Z&amp;se=2024-09-19T15%3A17%3A07Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A15%3A12Z&amp;ske=2024-09-20T02%3A15%3A12Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=r7%2BCgBpZ6abQ16bA3/E8VDTavICziRSp4pkrKaxRfSM%3D" alt="Sugar icon">
+                <div class="text">
+                    <p>Reduce sugar level</p>
+                </div>
+                <div class="status">
+                    <i class="fas fa-check check"></i>
+                </div>
+            </div>
+            <div class="progress-item">
+                <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-uecmWH3ptOwe703dCVeagNFM.png?st=2024-09-19T13%3A18%3A55Z&amp;se=2024-09-19T15%3A18%3A55Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A24%3A19Z&amp;ske=2024-09-20T02%3A24%3A19Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=eCLBqGpGQnzVOHjJBBtV/BBC6tv2gL8NcTyWPms7lNk%3D" alt="Vegetable icon">
+                <div class="text">
+                    <p>Eat more vegetables</p>
+                    <div class="percentage">50%</div>
+                </div>
+                <div class="status">
+                    <div class="circle">50%</div>
+                </div>
+            </div>
+            <div class="progress-item">
+                <img src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-0dDn47YURFz2beaUH2fyI2An.png?st=2024-09-19T13%3A18%3A51Z&amp;se=2024-09-19T15%3A18%3A51Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T04%3A16%3A23Z&amp;ske=2024-09-20T04%3A16%3A23Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=btdxYe8Yvn7IoyWgMIo1YSUKYLGqssl5n3ef8daBxk4%3D" alt="Water icon">
+                <div class="text">
+                    <p>Drink more water</p>
+                    <div class="percentage">90%</div>
+                </div>
+                <div class="status">
+                    <div class="circle">90%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function goBack() {
+            alert("Go back button clicked!");
+            // Implement the actual functionality here
+        }
+
+        function showMenu() {
+            alert("Menu button clicked!");
+            // Implement the actual functionality here
+        }
+
+        function selectTab(tab) {
+            alert(tab + " tab selected!");
+            // Implement the actual functionality here
+        }
+
+        var ctx = document.getElementById('caloriesChart').getContext('2d');
+        var caloriesChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                datasets: [{
+                    label: 'Calories',
+                    data: [150, 170, 160, 168, 180, 190, 200],
+                    backgroundColor: 'rgba(0, 200, 83, 0.1)',
+                    borderColor: '#00c853',
+                    borderWidth: 2,
+                    pointBackgroundColor: '#00c853',
+                    pointBorderColor: '#ffffff',
+                    pointBorderWidth: 2,
+                    pointRadius: 5,
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        min: 90,
+                        max: 250,
+                        ticks: {
+                            stepSize: 40
+                        }
+                    }
+                },
+                plugins: {
+                    tooltip: {
+                        enabled: true,
+                        callbacks: {
+                            label: function(context) {
+                                return context.raw + ' kcal';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

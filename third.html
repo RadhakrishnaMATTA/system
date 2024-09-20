@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Doctor Appointment</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: #0A0E27;
+            color: #FFFFFF;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .header .welcome-text {
+            margin-left: 10px;
+        }
+        .header .icons {
+            display: flex;
+            align-items: center;
+        }
+        .header .icons i {
+            margin-left: 20px;
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s; /* Smooth color change */
+        }
+        .header .icons i:hover {
+            color: #FFD700; /* Change color on hover */
+        }
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .section-title a {
+            color: #3A6FF7;
+            cursor: pointer;
+        }
+        .appointment-card {
+            background-color: #3A6FF7;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 10px;
+            position: relative;
+            opacity: 0; /* Start hidden for fade-in animation */
+            animation: fadeIn 1s forwards; /* Apply fade-in animation */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        .appointment-card .appointment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .appointment-card .appointment-header h3 {
+            margin: 0;
+        }
+        .appointment-card .appointment-details {
+            margin-top: 10px;
+        }
+        .appointment-card .appointment-details i {
+            margin-right: 10px;
+        }
+        .appointment-card .doctor-info {
+            display: flex;
+            align-items: center;
+            background-color: #1A1A1A;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .appointment-card .doctor-info img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .appointment-card .doctor-info .doctor-text {
+            margin-left: 10px;
+        }
+        .appointment-card .doctor-info .doctor-text h4 {
+            margin: 0;
+        }
+        .appointment-card .doctor-info .doctor-text p {
+            margin: 0;
+            color: #A0A0A0;
+        }
+        .dots {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .dots .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #A0A0A0;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite; /* Apply pulse animation */
+        }
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                background-color: #A0A0A0;
+            }
+            50% {
+                transform: scale(1.2);
+                background-color: #3A6FF7;
+            }
+            100% {
+                transform: scale(1);
+                background-color: #A0A0A0;
+            }
+        }
+        .dots .dot.active {
+            background-color: #3A6FF7;
+            transition: background-color 0.3s; /* Smooth color change */
+        }
+        .speciality-icons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .speciality-icons .icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        .speciality-icons .icon i {
+            font-size: 30px;
+            background-color: #1A1A1A;
+            padding: 10px;
+            border-radius: 50%;
+        }
+        .speciality-icons .icon p {
+            margin-top: 5px;
+        }
+        .top-doctor {
+            margin-top: 20px;
+        }
+        .top-doctor .tabs {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .top-doctor .tabs .tab {
+            padding: 10px 20px;
+            border-radius: 20px;
+            background-color: #1A1A1A;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s; /* Smooth color change */
+        }
+        .top-doctor .tabs .tab:hover {
+            background-color: #3A6FF7;
+            color: #FFFFFF; /* Change text color on hover */
+        }
+        .top-doctor .tabs .tab.active {
+            background-color: #3A6FF7;
+        }
+        .top-doctor .doctor-card {
+            background-color: #1A1A1A;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .top-doctor .doctor-card img {
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+        }
+        .top-doctor .doctor-card .doctor-info {
+            margin-left: 10px;
+        }
+        .top-doctor .doctor-card .doctor-info h4 {
+            margin: 0;
+        }
+        .top-doctor .doctor-card .doctor-info p {
+            margin: 0;
+            color: #A0A0A0;
+        }
+        .top-doctor .doctor-card .rating {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        .top-doctor .doctor-card .rating i {
+            color: #FFD700;
+            margin-right: 5px;
+        }
+        .top-doctor .doctor-card .rating span {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="profile">
+                <img alt="Profile picture of the user" height="50" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQA2QMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQIDBQYEBwj/xABBEAABAwMCAwUGBAMECwEAAAABAAIDBAUREiEGMUETIlFxgQcUYZGhsSMyQsEVUtFygvDxJCUnM1RiY3OS4eIW/8QAGQEBAAMBAQAAAAAAAAAAAAAAAAECAwQF/8QAJxEAAwACAQMCBgMAAAAAAAAAAAECAxESBCExE0EFIjIzUYFCQ0T/2gAMAwEAAhEDEQA/APW0qaClQC5SpByRugFQhIgFRlCRAKhIlygFS9MprnNY3U4gAcyei8m4z9ptZa62e3UcAY+OYkTvw4Pj8Bg+PVRslHot94ktNhpX1Fxq2MDHBpYw6n5PLujdcNm474evUro6Wu0PDQ7ErdHyz4L51uVddeIq41VWTJO7AMjjzA5JI7TIBmbOrOQAfio2TxPq0PaTgOB8jnKF810Vwr7a6OSO41HZsIDSH7sxkhelWrjiK72sx11YaWdoDRMx2kPzsHefiE2OLPSAlK4LDVOq7VTyukbI4tw57Ts7G2V3FWKhhGEoQgEKRLhGEAxIUp5pCEAxyidupnBRO5oCB4UWF0OGyj0qQWISowlUAUIKByQgECVCEAZRlGEYQAhJlL0QHnftX4zqOHmRUNC5gmmYXPD49WQdsc9uq8MDpa2pJld33uzv4re+3YlvFtPsN6NpHX9Thn6Y9FkuGbLU19WyXT+Fkb+O6pT0jSJ5PSOmhoLvUM0W6mcIj+otGXLu/wDxnEb3amU+knnpdt8l63YqKGCnY1rRgADktFAxrW7ALD1GzqeOZPn53BV/ZNofA8P8yQuGrt1faHxR1kWhme6QTjbwK+kJGt08gsZx/aI6+zzvawGaE9ozbwTm0yPTloT2RVXax3KFrnBgc14ic7OkkYJHwyvRV8+8GXua08U0BZns5HiB7R+prtvpz9F9BFdMvZyUtMAlQEqkqCEI6IBpCaU4pCgI3KNwUpTHBAQFNT3BNQHeE5NanIASdUqQoBUJMoQAgoRlAJ1RlCEB4P7eqeRvFlHP39E1C0NPTuvcCPqPmpeFJoKOhjdO9sbcDnvlXnt9ANDZh2WXiaQiTHIYb3fqD6LP0Fqnlp21EMRmcxgDWD8o8wsM34Ovpk/JubZxLaHkxCtja8bAOGnK00FTDJFrjkaW+IK8wis9XcWD3iKkZI3kY2d8fIfdavg6KSKiqoJ3iTSSGnGNlj4OhrfcuK2/2qjGKmsYx3QE7rgmudJcopI6acOLm4xyOCs/dbBXtrmVMfYSjOWiWMuaPHl1VhSWusnAlqWxsfG7LHRjTkeB5KGyeJ5zw/F/tCtkDh3BWAFuPy4J2+YX0T8fFeM8M25o9rn4kbi2MyStI5ZLcgn5lezD4Lrh7R5+RaoVKkCVXMxUICVAIQmEJ5SICMhRuUrlE7mgIXqNSPTEB3NTgmNTggFQQhKgEwgIQgBIlSIBCgHdBSBAYX2yUslRwvFLGwOEE4c7PPkRt64We4Nq2tjY0uGXYK9PvdrjvNpqLfK8sEw0h4GS09CvEeH5WwVkVHI8tcyodTucNtwcfcLnzT7nZ09pdj0q73WKloXuDXPIbkhu/wBFS8PcUWtrKhksxY/oHjBPosLdblcqmpmpsPjjEjo3HkGkeJVraODRUUbpf4lRtmcQRpmzpABOMD5LNSdDo9IobxFNTCZgeYCca3NLceeei656hjo8sc0gjOy8xbSXe0RyigkbWRvzrEL8tAxnJBHJXVquL4LHSyzkB8rS5rT/AC4UPsGXPB9PHJxNcatoy7LWZ8A1v/0t0sb7M4e0tlVcXas1NQ/A07YBxt8lsl1Y1qTgzVyoEqEK5kKhCEAJEqQhAMKicpSonICF6YnuTcIDqZyT1Cw7J+UBIEuVGCnIBQlKalQAjKEiAClCQpQgFXg/tSts9g4odVsa5tJXHt43gbB4/MD88+q95G68v9sldR10VLY24fVxu95eRg9mMEAeZ1H0CrWtdy+PfLsZO1XuOtkmc9rWzudq1dHHbn8laU3FUlGNApmPz/K0rzKOaWkeY3fm5eivqPiBpjDXdwM6LBx7o64y6WqPSZ786CyTVcwYJXgiKIDHPrhYaGrrbpV01BS65JpWthiaN9PifLZVVbcpbjP2cIfI5xIa0efNbr2fRU3C1dBW3hj/AHivzBEWjIizg7+eESSfciqqt8T1Sy25lptVLQR4IgjDMgfmPU+pXblO5gfFJhdJxAEIASoAQgJSgESIJTSgGvUTk9xUTigGOTErimZQE7DspQoWclKEA8JyaEuUAuEJUiAMoQFz1dbTUTdVTK1vUN3JPoE2Sk34Onmke5sbHPkcGNaMlzjgD1WVvHFxp6V0lBTF3JoMm2/l/msvUV1zvF0pYayocYvzSRNdgbZPLwxj6qNmqxb8mqvnHFtt9PIKJ5q6ojEQYO5q6ZPUeS8rlZLV18dwqnmR1WzL3+L+Z+4Vrd4QadlWCxxa/tSAegcNlyWgskimpJJe5Sv7OMAfm8CPgQPp8sabqTsWKcVcU97KqvsLKg50jzwoqPhRrpd5XtGOQC3FJROJDXjI8lYttmghzQPkseTDmSs4c4bpaTS9seXY/MeaubjbIqmehY9m0c4kAG2AAf8AL1XfSM7OPJGMc/JVtxu7KWGaWZhZ2mIoHZycn4KZTph0pW/Y0HDd9gfStpahxa6Ilsb3bh7MkD1AC0UcjZGao3B7T1acrzqyU4ax79i06QH52PX65XRdp6u2vpq2lkMTTJ2cuHbHPLPRdKvvoxvplxVpnoHkkWUtnFFQ6s91qoGyAjLJIyO91+y0VPX00+zX4ceTXbFW2jmeNo6ggpeQTVJQQpjk5NcgInFRuKe5RuQETim5Q8qPKA62KVqhCkaUBKEJoTggFCXfp1QqPjGvkorK+OlcG1dU4QQHwJ5n5Z36ICk4n41bE5tFZiHyPkET6n9MZ2zjxKoqokTiSqqZHuJxs4/c7n6+aoam3PpWATSYZDL2gI5vHw9QVrqmOlj93kigGXSxua5xzkEg/wBVnkaS2eh0kt01ooOIW0raaiiL3EPqM7nORsuehjpm3OWRsjssp3E465z8QrriUx++0bG08RPZPduM7nl9VyxR00k1xlFPGC2LDSM9T4KVS4lKxW8n7OerFNFbe1dHjNPgg/Hbks/TZYHF5eyJzWxySM5kA7kYz+krfXeBklllzFG57Kd2Dp5YG32Wep6CiqKyjc6MtFZTPZ3ZHYDgARgdM7qs0uJpnx16iaNNwO7+JmeGbDmRNDopGjSC3b59fkVsW2iF2CXOHyWK4HdNa6l9PUQufT1Dh2VWwjYeDm9PML0GM6cYzjzUxMtGOfnFdzNcWRiloXRUIc+oOCQTsR4bdSsRNVur6prJ4Hthpo8yRyDDhJjLgR0OPQ8/itrxNDWx3KOop3tbDM3s5HHfQd8ELHXG0tFc0GpkjdLTuL3Qu3kwQRqPXl9UntRb68S0jrtXYTW1srnuw6Z5I2Aznz/xlN4jipnWKqOp2GmN+Mjo4fHK7OGaSkFmjBg1aZHDvvJ8F3XWmp5LVWhtNHq7EkeY5KHaVm3pU8Pgx0UtGy5W6TcFxaAQTyJczw+C0vaRRzYjnlj8A1xx8lUds1sNvqGRRd1wBOnyP3JWrnePeywsYWOBI7o5KclLZHTYq20zptHEXu9XFQ3B4McrcwT9ARsQ5ascui8ovFOXXdooyXxwRd+F3X9Rx8seq9D4emkdbWQ1Dg6eDEbyDnO2x/bzBV01o4ss6beizKjenkqJ5UmRG4qNxTnFQvQEchUac8qNAdrVI1QsdlTBASJwTAUoQDsrB8Z1va8S01M092gpX1D/AAD391v0yVul5Rc6+Ce6cQ1Mri3XVdix/MaY2hn3BVL8G/TJPKthXx9va6UnJBg5npj/ANE+uF02yY1lstB3c6NzmPx0LMhc00jorLQvbvmRjR4OB3/YLgtE8kss1HqEccU7nsbqAIDgPHHUFZqXUnpXlUZlxLW9l5vMZDHYgia47dW5cfoEy3QuFJVOdsDPHFk+A5/dUj8SV1fOKk6QdP5idgRn6A/Nd9rpiy20LZJXOdLK6R3PfwPJXqdScuLNVZF2NXXMIoKoYDh7u4jSc9FlbS1wioWSNcDTSDBPTLnn9guu8N7K11RZUFn4YaMuI5keOFU0hqqe5W50UxcJS0HBDs7uHQpEfKTnzP1PBrKOqjiuDKQHVmcN7v6d/st5TknLT02XnLquq1OOIe1aT3gw55r0WldqfL8DyTGtDra5cWUvF1U2CCJhyS942HNY+uP+t42uIJEGOfiStFxLViO4tY6F0n4YOR5rIXK4StvdP2ETIw+PH4nPmU03ZKucfToueGA40EzACdMxGwVw6GR8UjdB7zHD6LJcPTVr217XSuaDI1/LSACPjhW0TXawTVE5Iz3yftlVqPmNceZ1i8FJHA51pLO6HROGMvb4knr4LSukxJBUEjs2whziCDgYGVhzSBra6Mzv1Meerup0/wAv/MrN4a2n/DmJDacdzV+YaeWDhXueyMuny023r2O6zvbU18k8xw6YukAI8NwPsfULT8PVnZXhsROG1MZGD4t7w+7lkKXTDcrc6UiJjs90ncZBz9WldUt2gglo6uLtCYZ2OJxseYx6qunyRNVNYqR6e7mmOQ17XsD2HU1wyD4gpjzstTzSJyheVK9QPQETymZSuTUB0sep2uXBHIuhkiA7GlOyudj1JnKAKqXsKaWY8o2F59BleJWqoFRYqh8zXB8kkkjvHd/Xp9B5r1LjmpNLwlc5GnBMWgH+0Q39151wue1sUtPI1rw0uBBHxWdvR2dHDq+xXy1k7bTbWRPDomzanA+AOPRTcPS+/wB+rQZDC5jcPx+ojOD05jC4uzfS3eBsH+7dkFmd9zg/crp4WfI+93B8rA04bjbG3+Am/k2XnG31HFkTYYhQ1bn1Mhc+Vwx55H7LTQW+kZ7jEXyuDKcHmOqycri2kqM/8SQfm5a2OT/S2j+VjW/RRdPRr02GXkYnEFFAy0TGOqlaC5g8tyqme3yCpt5iqmO7NzSNXwJ/qrXiJ+bMQP1SgfJcMkv+m2/P8/8ARIp8SufDPN6Zc1VHWvkkwW7OOCH9F6FSHDXuO/daSfRYGolbHK9upuckYz8VtqeXRRavGJv2CYq22Otx8ZnuZjil7hcYwInPBiachoPU/ArJXAVpuVK+GMtaBzJx9sLY8ST9hco++R+C3osrf5syUbnkkYeirVkvE3gl7/Atit9QLvXRvnjaXx9CM912Fett7O72lXKT8FQQSFvErdLiA8yjzyXFXjZi5oOrIwq5KezXpcKctbKCuttLHcrk0zTZOH9PFrvD4KaqtrYqJxgqpGuNPgNI2/Im32YCugLSNckTjIeZfg439FJTTvktEfbSHWYMnJ3wRsrVT0mRgwQnUlHD2cdRbZ5ptZzjVnP6nnr/AGvirStqI/4W8sjHcLDnDjycPj+yppIaWCho3ta+V/aY1SHAzhnT1WmuUrmWaoa3ADI27Y8CFa6XJHNixVwpm64QrRXcO0smcuj1Qu82Et/ZWrll/Z1UGSguEDsZhqtQ8nMafvlah5yFc46WnogkULipXqF3JCpC4puUOTcoCJhK6I3FIhAdMZKmaShCAzPtNcRwbV4POSIH/wA2rC8KOOirZ01u+yELLL4PR+H/AFlbdXFt6pWjYdmeXnldvB47WuuLpCXEaOvwQhR/E1r7rZwVYaIK7DRtVHx+K1FKQanJaOfx8AhCi/CMelp+ox17a2ShpmFuA6c5wT4LmdTsbcqEgu6HB8ghCtP0lXTeRnRLSx+9Oqcv16ScatsgnG3qvQZxopA1uwyG+iEKuH3N/iHiTNcWjVcdB3aYGnHqslxDsaXH/U/ZCE/sNf8ALJJQd/ieEO3w5/7q4kjaGS6RgsOxCEKuQ06Ty/0Ut6aP4hSnH5qV+R/dcrSqjjjoJA1jRiJ2PkkQrPwjKH89GVxqpqBrt81LRv8A3P6LRXcn+GV3/b/dCEryiY+1RoPZs4+9Xdmdi2F3rhy2rkqFueTl+pnLIVC7khCGZC9MQhAf/9k=" width="50"/>
+                <div class="welcome-text">
+                    <h2>Hello, RAM</h2>
+                    <p>Welcome Back</p>
+                </div>
+            </div>
+            <div class="icons">
+                <i class="fas fa-bell" onclick="alert('Notifications clicked!')"></i>
+                <i class="fas fa-heart" onclick="alert('Favorites clicked!')"></i>
+            </div>
+        </div>
+        <div class="section-title">
+            <h2>Appointment Today</h2>
+            <a href="#" onclick="alert('View More Appointments clicked!')">View More</a>
+        </div>
+        <div class="appointment-card">
+            <div class="appointment-header">
+                <h3>Appointment</h3>
+                <i class="fas fa-paper-plane" onclick="alert('Send Appointment clicked!')"></i>
+            </div>
+            <div class="appointment-details">
+                <p><i class="fas fa-calendar-alt"></i> Sunday, 11 September 2023</p>
+                <p><i class="fas fa-clock"></i> 08.00 - 09.00 AM</p>
+            </div>
+            <div class="doctor-info">
+                <img alt="Profile picture of Dr. Acmad Subandi" height="50" src="data:image/jpeg;base64,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" width="50"/>
+                <div class="doctor-text">
+                    <h4>Dr. Acmad Subandi</h4>
+                    <p>Heat Specialist - Tokyo</p>
+                </div>
+            </div>
+        </div>
+        <div class="dots">
+            <div class="dot active" onclick="alert('Dot 1 clicked!')"></div>
+            <div class="dot" onclick="alert('Dot 2 clicked!')"></div>
+            <div class="dot" onclick="alert('Dot 3 clicked!')"></div>
+        </div>
+        <div class="section-title">
+            <h2>Doctor Speciality</h2>
+            <a href="#" onclick="alert('View More Specialities clicked!')">View More</a>
+        </div>
+        <div class="speciality-icons">
+            <div class="icon" onclick="alert('General clicked!')">
+                <i class="fas fa-stethoscope"></i>
+                <p>General</p>
+            </div>
+            <div class="icon" onclick="alert('Cardiologist clicked!')">
+                <i class="fas fa-heartbeat"></i>
+                <p>Cardiologist</p>
+            </div>
+            <div class="icon" onclick="alert('Neurologist clicked!')">
+                <i class="fas fa-brain"></i>
+                <p>Neurologist</p>
+            </div>
+            <div class="icon" onclick="alert('Pediatrician clicked!')">
+                <i class="fas fa-child"></i>
+                <p>Pediatrician</p>
+            </div>
+        </div>
+        <div class="top-doctor">
+            <div class="section-title">
+                <h2>Top Doctor</h2>
+                <a href="#" onclick="alert('View More Top Doctors clicked!')">View More</a>
+            </div>
+            <div class="tabs">
+                <div class="tab active" onclick="alert('General tab clicked!')">General</div>
+                <div class="tab" onclick="alert('Cardiologist tab clicked!')">Cardiologist</div>
+                <div class="tab" onclick="alert('Pediatrician tab clicked!')">Pediatrician</div>
+            </div>
+            <div class="doctor-card">
+                <img alt="Profile picture of Dr. Acmad Subandi" height="50" src="data:image/jpeg;base64,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" width="50"/>
+                <div class="doctor-info">
+                    <h4>Dr. Acmad Subandi</h4>
+                    <p>Heat Specialist - Tokyo</p>
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <span>4.0</span>
+                        <p>Xperients</p>
+                    </div>
+                </div>
+                <i class="fas fa-heart" onclick="alert('Favorite doctor clicked!')"></i>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Add JavaScript functionality for tabs
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                alert(this.textContent + ' tab clicked!');
+            });
+        });
+
+        // Add JavaScript functionality for dots
+        document.querySelectorAll('.dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                document.querySelectorAll('.dot').forEach(d => d.classList.remove('active'));
+                this.classList.add('active');
+                alert('Dot ' + (Array.from(this.parentNode.children).indexOf(this) + 1) + ' clicked!');
+            });
+        });
+    </script>
+</body>
+</html>

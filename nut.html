@@ -1,0 +1,365 @@
+<html>
+ <head>
+  <title>
+   Nutritionist Detail
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 20px;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .header i {
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+        }
+        .doctor-card {
+            background-color: #1c1c3b;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .doctor-card img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+        }
+        .doctor-card h2 {
+            margin: 10px 0 5px;
+            font-size: 18px;
+            color: #fff;
+        }
+        .doctor-card p {
+            margin: 5px 0;
+            color: #fff;
+        }
+        .doctor-card span {
+            display: block;
+            color: #a1a1a1;
+            font-size: 14px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .stats div {
+            text-align: center;
+        }
+        .stats div i {
+            font-size: 24px;
+            color: #fff;
+        }
+        .stats div span {
+            display: block;
+            margin-top: 5px;
+            color: #a1a1a1;
+        }
+        .about {
+            margin: 20px 0;
+        }
+        .about h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .about p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #ccc;
+        }
+        .about a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .contact-options {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .contact-options div {
+            text-align: center;
+        }
+        .contact-options i {
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .contact-options i:hover {
+            transform: scale(1.2);
+        }
+        .contact-options span {
+            display: block;
+            margin-top: 5px;
+            color: #a1a1a1;
+        }
+        .recommendations {
+            margin: 20px 0;
+        }
+        .recommendations h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        .recommendations .meal {
+            background-color: #1c1c3b;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        .recommendations .meal:hover {
+            transform: scale(1.05);
+        }
+        .recommendations .meal img {
+            border-radius: 10px;
+            width: 60px;
+            height: 60px;
+            margin-right: 15px;
+        }
+        .recommendations .meal .meal-info {
+            flex-grow: 1;
+        }
+        .recommendations .meal .meal-info h4 {
+            margin: 0;
+            font-size: 14px;
+            color: #fff;
+        }
+        .recommendations .meal .meal-info p {
+            margin: 5px 0 0;
+            font-size: 12px;
+            color: #a1a1a1;
+        }
+        .recommendations .meal .meal-info .icon {
+            font-size: 20px;
+            color: #fff;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+        .button {
+            background-color: #4e4eff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #3b3bff;
+            transform: scale(1.05);
+        }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <i class="fas fa-arrow-left" onclick="goBack()">
+    </i>
+    <h1>
+     Nutritionist Detail
+    </h1>
+    <i class="fas fa-heart" onclick="toggleFavorite()">
+    </i>
+   </div>
+   <div class="doctor-card">
+    <img alt="Nutritionist's portrait" height="80" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-zri02exJFCRi8X7EP0h6nKJW.png?st=2024-09-19T13%3A52%3A23Z&amp;se=2024-09-19T15%3A52%3A23Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A06%3A04Z&amp;ske=2024-09-20T02%3A06%3A04Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=%2BK/sTzzNcnkIq8JiaY4AhgkUDcp0g6B026kDum3m5ws%3D" width="80"/>
+    <h2>
+     Dr. Anastasya Marinda
+    </h2>
+    <p>
+     Nutrition Specialist - Tokyo Hospital
+    </p>
+    <span>
+     Head of Nutrition Department
+    </span>
+   </div>
+   <div class="stats">
+    <div>
+     <i class="fas fa-briefcase">
+     </i>
+     <span>
+      7
+     </span>
+     <span>
+      Year of work
+     </span>
+    </div>
+    <div>
+     <i class="fas fa-user-friends">
+     </i>
+     <span>
+      300+
+     </span>
+     <span>
+      Number of patient
+     </span>
+    </div>
+    <div>
+     <i class="fas fa-star">
+     </i>
+     <span>
+      4.7
+     </span>
+     <span>
+      Number of rating
+     </span>
+    </div>
+   </div>
+   <div class="about">
+    <h3>
+     About Me
+    </h3>
+    <p>
+     A Nutrition Specialist is a medical professional who specializes in providing personalized dietary recommendations to improve the health and well-being of patients. They have specialized knowledge and expertise in creating meal plans that cater to individual health needs and preferences. Their role is crucial in guiding patients towards healthier eating habits and providing the necessary nutritional care...
+     <a href="#">
+      Read More
+     </a>
+    </p>
+   </div>
+   <div class="contact-options">
+    <div>
+     <i class="fas fa-phone" onclick="makeCall()">
+     </i>
+     <span>
+      Call
+     </span>
+    </div>
+    <div>
+     <i class="fas fa-video" onclick="makeVideoCall()">
+     </i>
+     <span>
+      Video Call
+     </span>
+    </div>
+    <div>
+     <i class="fas fa-comment" onclick="sendMessage()">
+     </i>
+     <span>
+      Message
+     </span>
+    </div>
+   </div>
+   <div class="recommendations">
+    <h3>
+     Personalized Daily Recommendations
+    </h3>
+    <div class="meal">
+     <img alt="Healthy breakfast" height="60" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-PX7ezyzmBQI2Kjmrw2EAxaiG.png?st=2024-09-19T13%3A59%3A24Z&amp;se=2024-09-19T15%3A59%3A24Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A08%3A03Z&amp;ske=2024-09-20T02%3A08%3A03Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=p2vaMhhdAkYdhK7OD4MDX8KXl0kZepT6ktXLVfJOQck%3D" width="60"/>
+     <div class="meal-info">
+      <h4>
+       Breakfast: Oatmeal with Berries
+      </h4>
+      <p>
+       A nutritious start to your day with fiber and antioxidants.
+      </p>
+     </div>
+     <i class="fas fa-apple-alt icon">
+     </i>
+    </div>
+    <div class="meal">
+     <img alt="Healthy lunch" height="60" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-Fm2cTZvvRXhMoNbxuaIHpXcN.png?st=2024-09-19T13%3A59%3A32Z&amp;se=2024-09-19T15%3A59%3A32Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A20%3A43Z&amp;ske=2024-09-20T02%3A20%3A43Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=mgHaD61aSl6l45QQiExdh%2B1nOInJpnEroB4dLHGwtfE%3D" width="60"/>
+     <div class="meal-info">
+      <h4>
+       Lunch: Grilled Chicken Salad
+      </h4>
+      <p>
+       A balanced meal with protein and fresh vegetables.
+      </p>
+     </div>
+     <i class="fas fa-carrot icon">
+     </i>
+    </div>
+    <div class="meal">
+     <img alt="Healthy dinner" height="60" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-6YQRN72dDLhIIplO5psgXMg5.png?st=2024-09-19T13%3A59%3A33Z&amp;se=2024-09-19T15%3A59%3A33Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T01%3A58%3A32Z&amp;ske=2024-09-20T01%3A58%3A32Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=88S3p1NJEe0TiwQrW1D08dO0whc6QZAWldaCMElHbRQ%3D" width="60"/>
+     <div class="meal-info">
+      <h4>
+       Dinner: Baked Salmon with Quinoa
+      </h4>
+      <p>
+       A heart-healthy meal rich in omega-3 fatty acids.
+      </p>
+     </div>
+     <i class="fas fa-fish icon">
+     </i>
+    </div>
+    <div class="meal">
+     <img alt="Healthy snack" height="60" src="https://oaidalleapiprodscus.blob.core.windows.net/private/org-BVbpSZmLndA7MfHIxv2ahIKS/user-IBY8IaMXtVn7IVIdZeyvjx16/img-IH7bgKFiNGXUEuQYJKy4KdJ7.png?st=2024-09-19T13%3A59%3A22Z&amp;se=2024-09-19T15%3A59%3A22Z&amp;sp=r&amp;sv=2024-08-04&amp;sr=b&amp;rscd=inline&amp;rsct=image/png&amp;skoid=d505667d-d6c1-4a0a-bac7-5c84a87759f8&amp;sktid=a48cca56-e6da-484e-a814-9c849652bcb3&amp;skt=2024-09-19T02%3A07%3A32Z&amp;ske=2024-09-20T02%3A07%3A32Z&amp;sks=b&amp;skv=2024-08-04&amp;sig=swCEmEC%2Ble50Ea6RlXGlNOsLfjMsNZTxe2jWQKSYhdc%3D" width="60"/>
+     <div class="meal-info">
+      <h4>
+       Snack: Greek Yogurt with Nuts
+      </h4>
+      <p>
+       A perfect snack to keep your energy levels up.
+      </p>
+     </div>
+     <i class="fas fa-seedling icon">
+     </i>
+    </div>
+   </div>
+   <button class="button" onclick="showStatistics()">
+    View Statistics
+   </button>
+   
+  </div>
+  <script>
+   function goBack() {
+            window.history.back();
+        }
+
+        function toggleFavorite() {
+            alert("Toggled favorite!");
+        }
+
+        function makeCall() {
+            alert("Making a call!");
+        }
+
+        function makeVideoCall() {
+            alert("Making a video call!");
+        }
+
+        function sendMessage() {
+            alert("Sending a message!");
+        }
+
+        
+
+        function showStatistics() {
+            window.location.href = "2second.html";
+        }
+  </script>
+ </body>
+</html>

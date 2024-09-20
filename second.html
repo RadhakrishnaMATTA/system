@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Detail</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D0D2B;
+            color: #FFFFFF;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .container {
+            padding: 20px;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .header i {
+            font-size: 24px;
+        }
+
+        .doctor-card {
+            background-color: #1F1F3D;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .doctor-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+        }
+
+        .doctor-card img {
+            border-radius: 50%;
+            width: 80px;
+            height: 80px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .doctor-card img:hover {
+            transform: rotate(10deg);
+        }
+
+        .doctor-card h2 {
+            margin: 10px 0 5px;
+            font-size: 20px;
+        }
+
+        .doctor-card p {
+            margin: 5px 0;
+            color: #A3A3C2;
+        }
+
+        .doctor-card .speciality {
+            color: #FF6B6B;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+
+        .stats div {
+            text-align: center;
+        }
+
+        .stats div i {
+            font-size: 24px;
+            color: #FF6B6B;
+        }
+
+        .about-me, .fees, .schedule {
+            margin: 20px 0;
+            animation: fadeIn 3s ease-in-out;
+        }
+
+        .about-me p, .fees p {
+            color: #A3A3C2;
+        }
+
+        .fees {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .fees div {
+            text-align: center;
+        }
+
+        .fees div p {
+            margin: 5px 0;
+        }
+
+        .schedule {
+            text-align: center;
+        }
+
+        .schedule .days {
+            display: flex;
+            justify-content: space-around;
+            margin: 10px 0;
+        }
+
+        .schedule .days div {
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .schedule .days div:hover {
+            background-color: #2C2C7F;
+            transform: scale(1.05);
+        }
+
+        .schedule .days div.active {
+            background-color: #3B3B98;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .appointment-btn {
+            background-color: #3B3B98;
+            border: none;
+            border-radius: 10px;
+            color: #FFFFFF;
+            font-size: 18px;
+            padding: 15px;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .appointment-btn:hover {
+            background-color: #2C2C7F;
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .modal-content {
+            background-color: #1F1F3D;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            border-radius: 10px;
+            color: #FFFFFF;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .close {
+            color: #AAAAAA;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #FFFFFF;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <i class="fas fa-arrow-left"></i>
+            <h1>Doctor Detail</h1>
+            <i class="fas fa-heart"></i>
+        </div>
+        <div class="doctor-card">
+            <img src="data:image/jpeg;base64,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" alt="Doctor's portrait" width="80" height="80"/>
+            <h2>Dr. Anastasya Marinda</h2>
+            <p class="speciality">Endocrinologist - India Hospital</p>
+            <p>Head of Endocrinology Department</p>
+        </div>
+        <div class="stats">
+            <div>
+                <i class="fas fa-briefcase"></i>
+                <p>7</p>
+                <p>Years of work</p>
+            </div>
+            <div>
+                <i class="fas fa-user-friends"></i>
+                <p>300+</p>
+                <p>Number of patients</p>
+            </div>
+            <div>
+                <i class="fas fa-star"></i>
+                <p>4.7</p>
+                <p>Rating</p>
+            </div>
+        </div>
+        <div class="about-me">
+            <h3>About Me</h3>
+            <p>A Liver Specialist is a medical professional who specializes in the treatment and management of diseases and issues related to the human liver. They have specialized knowledge and expertise in diagnosing and treating various liver conditions, such as hepatitis, cirrhosis, and liver cancer. Their role is crucial in maintaining the liver health of patients and providing the necessary care...
+                <span onclick="openModal()" style="color: #3B3B98; cursor: pointer;">Read More</span>
+            </p>
+        </div>
+        <div class="fees">
+            <div>
+                <i class="fas fa-comments"></i>
+                <p>Messaging</p>
+            </div>
+            <div>
+                <i class="fas fa-phone-alt"></i>
+                <p>Calling</p>
+            </div>
+            <div>
+                <i class="fas fa-video"></i>
+                <p>Video Calling</p>
+            </div>
+        </div>
+        <div class="schedule">
+            <h3>Consultation Schedule</h3>
+            <div class="days">
+                <div onclick="selectDay(this)">
+                    <p>Mon</p>
+                    <p>24</p>
+                </div>
+                <div class="active" onclick="selectDay(this)">
+                    <p>Tue</p>
+                    <p>25</p>
+                </div>
+                <div onclick="selectDay(this)">
+                    <p>Wed</p>
+                    <p>26</p>
+                </div>
+                <div onclick="selectDay(this)">
+                    <p>Thu</p>
+                    <p>27</p>
+                </div>
+                <div onclick="selectDay(this)">
+                    <p>Fri</p>
+                    <p>28</p>
+                </div>
+                <div onclick="selectDay(this)">
+                    <p>Sat</p>
+                    <p>29</p>
+                </div>
+                <div onclick="selectDay(this)">
+                    <p>Sun</p>
+                    <p>30</p>
+                </div>
+            </div>
+        </div>
+        <button class="appointment-btn" onclick="makeAppointment()">Make Appointment</button>
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <h2>About Dr. Anastasya Marinda</h2>
+            <p>Dr. Anastasya Marinda is a highly experienced Endocrinologist with over 7 years of experience in the field. She specializes in the treatment and management of diseases and issues related to the human liver. Dr. Marinda has a deep understanding of diagnosing and treating various liver conditions, such as hepatitis, cirrhosis, and liver cancer. Her role is crucial in maintaining the liver health of patients and providing the necessary care. She is currently the Head of the Endocrinology Department at Tokyo Hospital.</p>
+        </div>
+    </div>
+    <script>
+        function selectDay(element) {
+            const days = document.querySelectorAll('.days div');
+            days.forEach(day => day.classList.remove('active'));
+            element.classList.add('active');
+        }
+
+        function makeAppointment() {
+            const activeDay = document.querySelector('.days .active');
+            if (activeDay) {
+                window.location.href = "third.html"; // Replace with your URL
+            } else {
+                alert('Please select a day for the appointment.');
+            }
+        }
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
